@@ -8,6 +8,7 @@ Created on Mon Nov  1 02:24:59 2021
 
 import pandas as pd
 import sys
+import os
 
 def lectura_proveedor(path_archivo, hoja = "HDCVI"):
     """
@@ -165,7 +166,13 @@ if __name__ == "__main__":
     mo = 2500
     
     viatico = 1000
+    
+    for root, folder, file in os.walk("../proveedor"):
         
+        for archivo in file:
+            
+            pathdata = os.path.join(root,archivo)
+    
     for i in sys.argv:
             
         if "num_cam" in i:
@@ -195,6 +202,6 @@ if __name__ == "__main__":
         
     hojas = ["ELECTRICIDAD", "HDCVI", "ACC. CCTV", "CONECTIVIDAD", "ACCESO"]
             
-    pathdata = "../proveedor/HURIN GREMIO NOVIEMBRE V1 2021.xlsx"
+    #pathdata = "../proveedor/HURIN GREMIO NOVIEMBRE V1 2021.xlsx"
             
     programa(pathdata, hojas, num_cam, dolar, mo, viatico)

@@ -49,6 +49,8 @@ def programa(pathdata, hojas, num_cam = 1, dolar = 105, mo = 2500, viatico = 100
     
     precio = 0.0
     
+    #itero sobre cada hoja del excel
+    
     for h in hojas:
     
         df = lectura_proveedor(pathdata, hoja = h)
@@ -57,23 +59,23 @@ def programa(pathdata, hojas, num_cam = 1, dolar = 105, mo = 2500, viatico = 100
          
         col_nombre = df.columns
         
-        lista_indices = []
+        #itero sobre el rango de los indices y me imprime coincidencia con lista requerida
         
         for i in df.index:
+        
+            #------------------------------------------------------------------------------------------------------
                 
             for cod_mat in cod_materiales:
                 
                 if df["CODIGO"][i] == cod_materiales[cod_mat]:
-                    
-                    lista_indices.append(i)
                     
                     print("*"*100)
                         
                     for col in col_nombre:
                             
                         print(df[col][i])
-                    
-        for i in df.index:
+        
+            #------------------------------------------------------------------------------------------------------
                 
             for cod_mat in cod_materiales:
                 
@@ -120,16 +122,16 @@ def programa(pathdata, hojas, num_cam = 1, dolar = 105, mo = 2500, viatico = 100
     print("\n\n")                
     print(">>>>>>>>>>>>>>>>>>>>>>>DETALLE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n")
     print("          CANTIDAD DE MATERIALES SELECCIONADO\n")
-    print("CANTIDAD DE CAMARAS 1080p: ", num_cam, " COD         ----->", cod_materiales["camara"])
-    print("UN DVR DE 8 CH DE 1080p + DISCO DE 1T COD  ----->",cod_materiales["dvr_disc"])
-    print("CANTIDAD DE PLUGM ", (num_cam+1), " COD                  ----->", cod_materiales["plugm"])
-    print("CANTIDAD DE PLUGFEM ", (num_cam+1), " COD                ----->", cod_materiales["plugfem"])
-    print("CANTIDAD DE BALUNES ", num_cam+1, " COD                ----->", cod_materiales["balun"])
-    print("CANTIDAD DE CAJAS ESTANCA ", num_cam, " COD          ----->", cod_materiales["caja_estanca"])
-    print("CANTIDAD DE FUENTES ", num_cam, " COD                ----->", cod_materiales["fuente"])
-    print("CANTIDAD DE CABLE 100 mts", " COD             ----->", cod_materiales["cable"])
-    print("CABLE HDMI 3 mts COD                       ----->",cod_materiales["hdmi"])
-    print("ZAPATILLA DE 6 TOMAS COD                   ----->",cod_materiales["zapatilla"])
+    print("CANTIDAD DE CAMARAS 1080p: ", num_cam, "          COD   ----->", cod_materiales["camara"])
+    print("UN DVR DE 8 CH DE 1080p + DISCO DE 1T   COD   ----->",cod_materiales["dvr_disc"])
+    print("CANTIDAD DE PLUGM ", (num_cam+1), "                   COD   ----->", cod_materiales["plugm"])
+    print("CANTIDAD DE PLUGFEM ", (num_cam+1), "                 COD   ----->", cod_materiales["plugfem"])
+    print("CANTIDAD DE BALUNES ", num_cam+1, "                 COD   ----->", cod_materiales["balun"])
+    print("CANTIDAD DE CAJAS ESTANCA ", num_cam, "           COD   ----->", cod_materiales["caja_estanca"])
+    print("CANTIDAD DE FUENTES ", num_cam, "                 COD   ----->", cod_materiales["fuente"])
+    print("CANTIDAD DE CABLE 100 mts", "              COD   ----->", cod_materiales["cable"])
+    print("CABLE HDMI 3 mts                        COD   ----->",cod_materiales["hdmi"])
+    print("ZAPATILLA DE 6 TOMAS                    COD   ----->",cod_materiales["zapatilla"])
     print("\n")
     print(">>>>>>>>>>>>>>>>>>>>>>>DETALLE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n")
     print("\n\n")
@@ -150,11 +152,19 @@ def programa(pathdata, hojas, num_cam = 1, dolar = 105, mo = 2500, viatico = 100
     print("-"*100)
     print("\n")
     print("-"*100)
-    print("TOTAL $",round(precio*dolar,4) + (mo * num_cam) + viatico," con Mano de Obra")
+    print("TOTAL $",round(precio*dolar,4) + (mo * num_cam) + int(viatico)," con Mano de Obra")
     print("-"*100)
     
 
 if __name__ == "__main__":
+    
+    num_cam = 1
+    
+    dolar = 105
+    
+    mo = 2500
+    
+    viatico = 1000
         
     for i in sys.argv:
             
@@ -175,12 +185,16 @@ if __name__ == "__main__":
             d = i.split("=")
                 
             dolar = float(d[-1])
+        
+        if "viatico" in i:
+                
+            v = i.split("=")
+                
+            viatico = int(v[-1])
             
         
     hojas = ["ELECTRICIDAD", "HDCVI", "ACC. CCTV", "CONECTIVIDAD", "ACCESO"]
             
     pathdata = "../proveedor/HURIN GREMIO NOVIEMBRE V1 2021.xlsx"
             
-    programa(pathdata, hojas, num_cam, dolar, mo)
-        
-   
+    programa(pathdata, hojas, num_cam, dolar, mo, viatico)

@@ -132,7 +132,7 @@ def programa(pathdata, hojas, num_cam = 1, dolar = 105, mo = 2500, viatico = 100
     print("CANTIDAD DE FUENTES ", num_cam, "                 COD   ----->", cod_materiales["fuente"])
     print("CANTIDAD DE CABLE 100 mts", "              COD   ----->", cod_materiales["cable"])
     print("CABLE HDMI 3 mts                        COD   ----->",cod_materiales["hdmi"])
-    print("ZAPATILLA DE 6 TOMAS                    COD   ----->",cod_materiales["zapatilla"])
+    print("ZAPATILLA DE 6 TOMAS 1                  COD   ----->",cod_materiales["zapatilla"])
     print("\n")
     print(">>>>>>>>>>>>>>>>>>>>>>>DETALLE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n")
     print("\n\n")
